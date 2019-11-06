@@ -111,7 +111,7 @@ def test_n2vWrapper_getitem():
         else:
             X = Y[:,:,:,:n_chan]
         val_manipulator = random_neighbor_withCP_uniform
-        dw = N2V_DataWrapper(X, Y, 4, num_pix=16, shape=(32, 32), value_manipulation=val_manipulator)
+        dw = N2V_DataWrapper(X, Y, 4, perc_pix=0.198, shape=(32, 32), value_manipulation=val_manipulator)
 
         x_batch, y_batch = dw.__getitem__(0)
         assert x_batch.shape == (4, 32, 32, int(n_chan))
@@ -125,7 +125,7 @@ def test_n2vWrapper_getitem():
         n_chan = y_shape[-1]//2
         X = Y[:,:,:,:,0][:,:,:,:,np.newaxis]
         val_manipulator = random_neighbor_withCP_uniform
-        dw = N2V_DataWrapper(X, Y, 4, num_pix=64, shape=(32, 32, 32), value_manipulation=val_manipulator)
+        dw = N2V_DataWrapper(X, Y, 4, perc_pix=0.198, shape=(32, 32, 32), value_manipulation=val_manipulator)
 
         x_batch, y_batch = dw.__getitem__(0)
         assert x_batch.shape == (4, 32, 32, 32, 1)
