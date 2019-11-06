@@ -131,8 +131,9 @@ class N2V_DataGenerator():
         """
         patches = []
         for img in data:
-            p = self.generate_patches(img, num_patches=num_patches_per_img, shape=shape, augment=augment)
-            patches.append(p)
+            for s in range(img.shape[0]):
+                p = self.generate_patches(img[s][np.newaxis], num_patches=num_patches_per_img, shape=shape, augment=augment)
+                patches.append(p)
 
         patches = np.concatenate(patches, axis=0)
 
