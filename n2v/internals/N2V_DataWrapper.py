@@ -41,12 +41,12 @@ class N2V_DataWrapper(Sequence):
 
         if self.dims == 2:
             self.patch_sampler = self.__subpatch_sampling2D__
-            self.box_size = np.round(np.sqrt(self.shape[1] * self.shape[2] / 100.0 * perc_pix)).astype(np.int)
+            self.box_size = np.round(np.sqrt(np.product(shape) / 100.0 * perc_pix)).astype(np.int)
             self.get_stratified_coords = self.__get_stratified_coords2D__
             self.rand_float = self.__rand_float_coords2D__(self.box_size)
         elif self.dims == 3:
             self.patch_sampler = self.__subpatch_sampling3D__
-            self.box_size = np.round(np.power(self.shape[1] * self.shape[2] * self.shape[3] / 100.0 * perc_pix, 1/3.0)).astype(np.int)
+            self.box_size = np.round(np.power(np.product(shape) / 100.0 * perc_pix, 1/3.0)).astype(np.int)
             self.get_stratified_coords = self.__get_stratified_coords3D__
             self.rand_float = self.__rand_float_coords3D__(self.box_size)
         else:
