@@ -83,14 +83,14 @@ def pm_identity(local_sub_patch_radius):
     return identity
 
 
-def manipulate_val_data(X_val, Y_val, num_pix=64, shape=(64, 64), value_manipulation=pm_uniform_withCP(5)):
+def manipulate_val_data(X_val, Y_val, perc_pix=0.198, shape=(64, 64), value_manipulation=pm_uniform_withCP(5)):
     dims = len(shape)
     if dims == 2:
-        box_size = np.round(np.sqrt(X_val.shape[1] * X_val.shape[2] / num_pix)).astype(np.int)
+        box_size = np.round(np.sqrt(100/perc_pix)).astype(np.int)
         get_stratified_coords = dw.__get_stratified_coords2D__
         rand_float = dw.__rand_float_coords2D__(box_size)
     elif dims == 3:
-        box_size = np.round(np.power(X_val.shape[1] * X_val.shape[2] * X_val.shape[3] / num_pix, 1 / 3.0)).astype(np.int)
+        box_size = np.round(np.sqrt(100/perc_pix)).astype(np.int)
         get_stratified_coords = dw.__get_stratified_coords3D__
         rand_float = dw.__rand_float_coords3D__(box_size)
 
